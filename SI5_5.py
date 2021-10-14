@@ -6,6 +6,10 @@ clock=pygame.time.Clock()
 
 screen = pygame.display.set_mode((400,600))
 
+background_image = pygame.image.load("bg.jpg").convert_alpha()
+enemy_image = pygame.image.load("enemy.png").convert_alpha()
+player_image = pygame.image.load("player.png").convert_alpha()
+
 #creating objects of game
 player=pygame.Rect(200,500,30,30)
 playerSpeed=20
@@ -24,6 +28,7 @@ bulletState="ready"
         
 while True:    
     screen.fill((0,0,0))
+    screen.blit(background_image,[0,0])
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
@@ -53,13 +58,17 @@ while True:
             enemyspeed=enemyspeed * -1
             for e in enemies:
                 e.y=e.y+20
-            
+        
+        if bullet.colliderect(enemy):
+            enemy.y=-9000
+            bullet.y=-9000
+        
         pygame.draw.rect(screen,(123,200,100),enemy)
-
+        
         
     pygame.draw.rect(screen,(225,225,15),bullet)         
-    pygame.draw.rect(screen,(23,100,100),player)
-    
+    #pygame.draw.rect(screen,(23,100,100),player)
+    screen.blit(player_image,player)
        
     
     pygame.display.update()
