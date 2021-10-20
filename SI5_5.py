@@ -63,6 +63,9 @@ while True:
             enemy.y=-9000
             bullet.y=-9000
         
+        #2 Check if enemy is collided with the player and then move the player outside the game screen.
+            
+        #1 Add code and replace this line to show enemy image instead of a rectangle.
         pygame.draw.rect(screen,(123,200,100),enemy)
         
         
